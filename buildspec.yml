@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+
+  build:
+    commands:
+      - python -m compileall -q app.py
+      - mkdir -p package
+      - cp app.py package/
+      - |
+        if [ -f requirements.txt ]; then
+          python -m pip install -r requirements.txt -t package
+        fi
+      - cd package && zip -qr ../function.zip . && cd ..
+
+  post_build:
+    commands:
+      - aws lambda update-function-code --function-name "$LAMBDA_FUNCTION_NAME" --zip-file fileb://function.zip --region "$AWS_DEFAULT_REGION"
+      - aws lambda wait function-updated --function-name "$LAMBDA_FUNCTION_NAME" --region "$AWS_DEFAULT_REGION"
+
+artifacts:
+  files:
+    - function.zip
