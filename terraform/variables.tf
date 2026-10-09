@@ -3,7 +3,7 @@ variable "aws_region" {
 }
 
 variable "lambda_function_name" {
-  default = "lambda-cicd-demo"
+  default = "lambda-cicd-demo1"
 }
 
 variable "github_owner" {
