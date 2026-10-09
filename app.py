@@ -1,5 +1,5 @@
 def lambda_handler(event, context):
     return {
         "statusCode": 200,
-        "body": "Hello from Lambda, deployed through CodePipeline!"
+        "body": "Hello from LambdaAWS v2, deployed through CodePipeline!"
     }
