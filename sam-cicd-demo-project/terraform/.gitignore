@@ -1,0 +1,13 @@
+# Terraform state files (contain sensitive data)
+terraform.tfstate
+terraform.tfstate.backup
+
+# Terraform variables (contain sensitive values)
+terraform.tfvars
+
+# Terraform providers and plugins
+.terraform/
+.terraform.lock.hcl
+
+# Placeholder zip
+placeholder.zip
