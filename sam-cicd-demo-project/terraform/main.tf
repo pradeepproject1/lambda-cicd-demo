@@ -20,7 +20,7 @@ resource "aws_codebuild_project" "this" {
 
   source {
     type      = "CODEPIPELINE"
-    buildspec = "sam-cicd-demo/buildspec.yml"
+    buildspec = "sam-cicd-demo-project/sam-cicd-demo/buildspec.yml"
   }
 
   artifacts {
