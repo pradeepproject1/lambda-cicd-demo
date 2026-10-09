@@ -13,7 +13,7 @@ phases:
 
   post_build:
     commands:
-      - cd sam-cicd-demo && sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name sam-cicd-demo --s3-bucket $ARTIFACT_BUCKET --capabilities CAPABILITY_IAM --region $AWS_DEFAULT_REGION
+      - sam deploy --template-file sam-cicd-demo/.aws-sam/build/template.yaml --no-confirm-changeset --no-fail-on-empty-changeset --stack-name sam-cicd-demo --s3-bucket $ARTIFACT_BUCKET --capabilities CAPABILITY_IAM --region $AWS_DEFAULT_REGION
 
 artifacts:
   files:
