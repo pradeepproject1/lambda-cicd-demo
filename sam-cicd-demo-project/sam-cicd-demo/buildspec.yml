@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+    commands:
+      - pip install aws-sam-cli
+
+  build:
+    commands:
+      - cd sam-cicd-demo && sam build
+
+  post_build:
+    commands:
+      - cd sam-cicd-demo && sam deploy
+          --template-file .aws-sam/build/template.yaml
+          --no-confirm-changeset
+          --no-fail-on-empty-changeset
+          --stack-name sam-cicd-demo
+          --s3-bucket $ARTIFACT_BUCKET
+          --capabilities CAPABILITY_IAM
+          --region $AWS_DEFAULT_REGION
+
+artifacts:
+  files:
+    - sam-cicd-demo/.aws-sam/**/*
+    - sam-cicd-demo/template.yaml
